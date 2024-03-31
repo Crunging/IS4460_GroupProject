@@ -9,6 +9,15 @@ class Room(models.model):
     BuildingID =models.ForeignKey(Building, on_delete=models.Cascade)
     Room_Number =models.IntegerField()
     Type = models.CharField(max_length=255)
+
+class Person(models.Model):
+    UID = models.AutoField
+    Last_Name = models.CharField(max_length=255)
+    First_Name = models.CharField(max_length=255)
+    Campus_Role = models.CharField(max_length=255)
+    Major = models.CharField(max_length=255)
+    Job_Title = models.CharField(max_length=255)
+    Contact = models.CharField(max_length=255)
 # Create your models here.
 
 
