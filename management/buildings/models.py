@@ -18,6 +18,7 @@ class Person(models.Model):
     Major = models.CharField(max_length=255)
     Job_Title = models.CharField(max_length=255)
     Contact = models.CharField(max_length=255)
+class Access_Record(models.Model):
 # Create your models here.
 
 
