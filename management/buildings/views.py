@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .models import buildings
+from buildings.models import buildings
 from django.views import View
 from .forms import BuildingForm
 from rest_framework import generics
