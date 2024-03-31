@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-class buildingsView(View):
+class BuildingsView(View):
 
     def get(self,request):
 
