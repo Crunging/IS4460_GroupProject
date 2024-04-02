@@ -17,20 +17,20 @@ class PersonDetail(View):
 class PersonCreate(View):
     def get(self, request):
         form = PersonForm()
-        return render(request=request, template_name='persons/person_form.html', context={'form': form})
+        return render(request=request, template_name='persons/person_create.html', context={'form': form})
 
     def post(self, request):
         form = PersonForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect(reverse('person_list'))
-        return render(request=request, template_name='persons/person_form.html', context={'form': form})
+        return render(request=request, template_name='persons/person_create.html', context={'form': form})
 
 class PersonUpdate(View):
     def get(self, request, uid):
         person = Person.objects.get(uid=uid)
         form = PersonForm(instance=person)
-        return render(request=request, template_name='persons/person_form.html', context={'form': form})
+        return render(request=request, template_name='persons/person_update.html', context={'form': form})
 
     def post(self, request, uid):
         person = Person.objects.get(uid=uid)
@@ -38,7 +38,7 @@ class PersonUpdate(View):
         if form.is_valid():
             form.save()
             return redirect(reverse('person_list'))
-        return render(request=request, template_name='persons/person_form.html', context={'form': form})
+        return render(request=request, template_name='persons/person_update.html', context={'form': form})
 
 class PersonDelete(View):
     def get(self, request, uid):

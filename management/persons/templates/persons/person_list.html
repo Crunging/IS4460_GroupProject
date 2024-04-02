@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person List</title>
+</head>
+<body>
+    <h1>Person List</h1>
+    <ul>
+    {% for person in persons %}
+        <li><a href="{% url 'person_detail' person.uid %}">{{ person.first_name }} {{ person.last_name }}</a></li>
+    {% endfor %}
+    </ul>
+    <a href="{% url 'person_create' %}">Create New Person</a>
+</body>
+</html>
