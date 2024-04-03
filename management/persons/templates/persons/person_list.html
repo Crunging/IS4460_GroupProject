@@ -2,14 +2,20 @@
 <html>
 <head>
     <title>Person List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Person List</h1>
-    <ul>
+    <ul class="list-group col-md-6">
     {% for person in persons %}
-        <li><a href="{% url 'person_detail' person.uid %}">{{ person.first_name }} {{ person.last_name }}</a></li>
+        <li class="list-group-item"><a href="{% url 'person_detail' person.uid %}">{{ person.first_name }} {{ person.last_name }}</a></li>
     {% endfor %}
     </ul>
-    <a href="{% url 'person_create' %}">Create New Person</a>
+    <a href="{% url 'person_create' %}" class="btn btn-primary mt-3">Create New Person</a>
 </body>
 </html>

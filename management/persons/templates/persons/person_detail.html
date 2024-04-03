@@ -2,15 +2,20 @@
 <html>
 <head>
     <title>Person Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Person Detail</h1>
-    <p>First Name: {{ person.first_name }}</p>
-    <p>Last Name: {{ person.last_name }}</p>
-    <p>Campus Role: {{ person.campus_role }}</p>
+    <p><strong>First Name:</strong> {{ person.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ person.last_name }}</p>
+    <p><strong>Campus Role:</strong> {{ person.campus_role }}</p>
     <!-- Add other fields as needed -->
-    <a href="{% url 'person_update' person.uid %}">Update</a>
-    <a href="{% url 'person_delete' person.uid %}">Delete</a>
+    <a href="{% url 'person_update' person.uid %}" class="btn btn-primary">Update</a>
+    <a href="{% url 'person_delete' person.uid %}" class="btn btn-danger">Delete</a>
 </body>
 </html>
-

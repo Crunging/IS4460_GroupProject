@@ -2,14 +2,20 @@
 <html>
 <head>
     <title>Create New Person</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Create New Person</h1>
-    <form method="post">
+    <form method="post" class="col-md-6">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <a href="{% url 'person_list' %}">Back to Person List</a>
+    <a href="{% url 'person_list' %}" class="btn btn-secondary mt-3">Back to Person List</a>
 </body>
 </html>
