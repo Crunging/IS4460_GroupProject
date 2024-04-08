@@ -11,8 +11,9 @@
 </head>
 <body>
     <h1>Building Detail</h1>
-    <p><strong>Building Name:</strong> {{ building.building_name }}</p>
-    <p><strong>Year Built:</strong> {{ building.year_built }}</p>
+    <p><strong>Building ID:</strong> {{ building.BuildingID }} </p>
+    <p><strong>Building Name:</strong> {{ building.Building_name }}</p>
+    <p><strong>Year Built:</strong> {{ building.Year_built }}</p>
   
     <!-- Add other fields as needed -->
     <a href="{% url 'buildings_update' buildings.BuildingID %}" class="btn btn-primary">Update</a>
