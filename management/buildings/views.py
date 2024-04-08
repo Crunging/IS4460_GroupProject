@@ -5,7 +5,7 @@ from .forms import BuildingForm
 from rest_framework import generics
 
 
-class BuildingsView(View):
+class BuildingView(View):
 
     def get(self,request):
 
