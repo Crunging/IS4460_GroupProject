@@ -7,12 +7,12 @@ from .forms import AccessRecordsForm
 class AccessRecordsList(View):
     def get(self, request):
         access_records = Access_Records.objects.all()
-        return render(request=request, template_name='access_records/accesrecords_list.html', context={'access_Records': Access_Recordss})
+        return render(request=request, template_name='access_records/accesrecords_list.html', context={'access_Records': Access_Records})
     
 class AccessRecordsDetail(View):
     def get(self, request, RecordID):
         Access_Records = Access_Records.objects.get(RecordID=RecordID)
-        return render(request=request, template_name='access_records/accessRecords_detail.html', context={'access_record': Access_Recordss})
+        return render(request=request, template_name='access_records/accessRecords_detail.html', context={'access_record': Access_Records})
 
 class AccessRecordsUpdate(View):
     def get(self, request, RecordID=None):
@@ -21,7 +21,7 @@ class AccessRecordsUpdate(View):
         else:
             access_record = Access_Records()
         form = AccessRecordsForm(instance=access_record)
-        return render(request=request, template_name='access_records/accessrecords_update.html', context={'access_records': Access_Recordss, 'form': form})
+        return render(request=request, template_name='access_records/accessrecords_update.html', context={'access_records': Access_Records, 'form': form})
     
     def post(self, request, RecordID=None):
         if RecordID:
