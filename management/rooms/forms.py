@@ -1,6 +1,8 @@
 from django import forms
-from rooms.models import Rooms
-class RoomsForm(forms.ModelForm):
+from .models import Room
+
+class RoomForm(forms.ModelForm):
     class Meta:
-        model = Rooms 
-        fields = '__all__'
+        model = Room
+        fields = ['BuildingID', 'Room_Number', 'Type']
+

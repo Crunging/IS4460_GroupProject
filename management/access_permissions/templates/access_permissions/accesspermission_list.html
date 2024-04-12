@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Permissions List</title>
+</head>
+<body>
+    <h2>Access Permissions</h2>
+    <ul>
+        {% for permission in access_permissions %}
+            <li>
+                <a href="{% url 'access_permission_detail' record.pk %}">{{ record }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

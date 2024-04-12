@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Delete Access Permissions</title>
+</head>
+<body>
+    <h2>Confirm Delete Access Permissions</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ access_permissions }}"?</p>
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'access_permission_list' %}">Cancel</a>
+    </form>
+</body>
+</html>
