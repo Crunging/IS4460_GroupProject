@@ -20,7 +20,7 @@ class AccessRecordsUpdate(View):
             access_record = AccessRecord.objects.get(pk=RecordID)
         else:
             access_record = Access_Record()
-        form = AccessRecordForm(instance=access_record)
+        form = AccessRecordsForm(instance=access_record)
         return render(request=request, template_name='access_records/accessrecords_update.html', context={'access_records': Access_Records, 'form': form})
     
     def post(self, request, RecordID=None):
@@ -40,7 +40,7 @@ class AccessRecordDelete(View):
             access_record = Rccess_Record.objects.get(pk=RecordID)
         else:
             access_record = Access_Record()
-        form = AccessRecordForm(instance=Access_Record)
+        form = AccessRecordsForm(instance=Access_Record)
         for field in form.fields:
             form.fields[field].widget.attrs['disabled'] = True
         return render(request=request, template_name='access_records/accessrecord_delete.html', context={'access_record': Access_Record, 'form': form})
