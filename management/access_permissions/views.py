@@ -4,7 +4,7 @@ from django.views import View
 from .models import Access_Permission
 from .forms import AccessPermissionForm
 
-class AccessPermisionList(View):
+class AccessPermissionList(View):
     def get(self, request):
         accesspermissions = Access_Permission.objects.all()
         return render(request=request, template_name='accesspermissions/accesspermission_list.html', context={'accesspermissions': accesspermissions})
@@ -12,25 +12,25 @@ class AccessPermisionList(View):
 class AccessPermissionDetail(View):
     def get(self, request, AccessID):
         accesspermission = Access_Permission.objects.get(AccessID=AccessID)
-        return render(request=request, template_name='accesspermisions/accesspermisions_detail.html', context={'accesspermission': accesspermission})
+        return render(request=request, template_name='accesspermissions/accesspermission_detail.html', context={'accesspermission': accesspermission})
 
 class AccessPermissionCreate(View):
     def get(self, request):
         form = AccessPermissionForm()
-        return render(request=request, template_name='accesspermisions/accesspermision_form.html', context={'form': form})
+        return render(request=request, template_name='accesspermissions/accesspermission_form.html', context={'form': form})
 
     def post(self, request):
         form = AccessPermissionForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect(reverse('access_permission_list'))
-        return render(request=request, template_name='accesspermisions/accesspermision_form.html', context={'form': form})
+        return render(request=request, template_name='accesspermissions/accesspermission_form.html', context={'form': form})
 
 class AccessPermissionUpdate(View):
     def get(self, request, AccessID):
         accesspermission = Access_Permission.objects.get(AccessID=AccessID)
         form = AccessPermissionForm(instance=accesspermission)
-        return render(request=request, template_name='accesspermisions/accesspermision_form.html', context={'form': form})
+        return render(request=request, template_name='accesspermissions/accesspermission_form.html', context={'form': form})
 
     def post(self, request, AccessID):
         accesspermission = Access_Permission.objects.get(AccessID=AccessID)
@@ -38,12 +38,12 @@ class AccessPermissionUpdate(View):
         if form.is_valid():
             form.save()
             return redirect(reverse('access_permission_list'))
-        return render(request=request, template_name='accesspermisions/accesspermision_form.html', context={'form': form})
+        return render(request=request, template_name='accesspermissions/accesspermission_form.html', context={'form': form})
 
 class AccessPermissionDelete(View):
     def get(self, request, AccessID):
         accesspermission = Access_Permission.objects.get(AccessID=AccessID)
-        return render(request=request, template_name='accesspermisions/accesspermision_confirm_delete.html', context={'accesspermission': accesspermission})
+        return render(request=request, template_name='accesspermissions/accesspermission_confirm_delete.html', context={'accesspermission': accesspermission})
 
     def post(self, request, AccessID):
         accesspermission = Access_Permission.objects.get(AccessID=AccessID)
