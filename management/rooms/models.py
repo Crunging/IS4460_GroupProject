@@ -1,5 +1,5 @@
 from django.db import models
-from .models import Building 
+from buildings.models import Building 
 
 class Room(models.Model):  
     RoomID = models.AutoField(primary_key=True) 
