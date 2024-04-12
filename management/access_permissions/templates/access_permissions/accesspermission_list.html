@@ -12,7 +12,7 @@
 <body>
     <h1>Access Permissions List</h1>
     <ul class="list-group col-md-6">
-    {% for accesspermission in accesspermissions %}
+    {% for accesspermissions in accesspermissions %}
         <li class="list-group-item"><a href="{% url 'accesspermission_detail' accesspermission.AccessID %}">{{ accesspermission.AccessID }} {{ accesspermissions.BuildingID }}{{ accesspermissions.RoomID }}{{ accesspermissions.UID }}{{ accesspermissions.Building_Hours }}{{ accesspermissions.Room_Hours }}</a></li>
     {% endfor %}
     </ul>
