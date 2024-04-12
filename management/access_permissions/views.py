@@ -18,7 +18,7 @@ class AccessPermissionDetailView(DetailView):
     template_name = 'access_permission/accesspermission_detail.html'
 
 # Create view for a new access record
-class AccessPwermissionCreateView(CreateView):
+class AccessPermissionCreateView(CreateView):
     model = Access_Permission
     form_class = AccessPermissionForm
     template_name = 'access_permission/accesspermission_form.html'
