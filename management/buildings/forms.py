@@ -3,6 +3,6 @@ from buildings.models import Building
 
 class BuildingForm(forms.ModelForm):
     class Meta:
-        model = Movie
+        model = Building
         fields = '__all__'
 

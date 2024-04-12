@@ -1,91 +1,57 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from buildings.models import Building
+from django.shortcuts import render, redirect, reverse
 from django.views import View
+from .models import Building
 from .forms import BuildingForm
-from rest_framework import generics
 
-
-class BuildingView(View):
-
-    def get(self,request):
-
+class BuildingList(View):
+    def get(self, request):
         buildings = Building.objects.all()
-
-        return render(request = request,template_name = 'buildings_view.html',context = {'buildings:buildings})
+        return render(request=request, template_name='buildings/building_list.html', context={'buildings': buildings})
 
 class BuildingUpdate(View):
-
-    def get(self,request,buildingID=None):
-
-        if BuildingID:
-            building = Building.objects.get(pk=BuildingID)
+    def get(self, request, buildingID=None):
+        if buildingID:
+            building = Building.objects.get(pk=buildingID)
         else:
             building = Building()
-
         form = BuildingForm(instance=building)
-
-
-       
-        return render(request = request,
-                      template_name = 'building_update.html',
-                      context = {'building':building,'form':form})
+        return render(request=request, template_name='buildings/building_update.html', context={'building': building, 'form': form})
     
-    def post(self,request,BuildingID=None):
-
-        if BuildingID:
-            building = Building.objects.get(pk=BuildingID)
+    def post(self, request, buildingID=None):
+        if buildingID:
+            building = Building.objects.get(pk=buildingID)
         else:
-            building = building()
-
-        form = BuildingForm(request.POST,instance=building)
-
+            building = Building()
+        form = BuildingForm(request.POST, instance=building)
         if form.is_valid():
-            building = form.save()
+            form.save()
+            return redirect(reverse("building_list"))
+        return render(request=request, template_name='buildings/building_update.html', context={'building': building, 'form': form})
 
-            return redirect(reverse("building_update"))
-        
-        return render(request = request,template_name = 'building_update.html',context = {'building':building,'form':form})
-     
 class BuildingDelete(View):
-
-    def get(self,request,BuildingID=None):
-
-        if BuildingID:
-            building = Building.objects.get(pk=BuildingID)
+    def get(self, request, buildingID=None):
+        if buildingID:
+            building = Building.objects.get(pk=buildingID)
         else:
-            building = building()
-
-      
+            building = Building()
         form = BuildingForm(instance=building)
-
         for field in form.fields:
             form.fields[field].widget.attrs['disabled'] = True
-
-        return render(request = request,template_name = 'building_delete.html',context = {'building':building,'form':form})
+        return render(request=request, template_name='buildings/building_delete.html', context={'building': building, 'form': form})
       
-    
-    def post(self,request,BuildingID=None):
-
-        building = Building.objects.get(pk=BuildingID)
-
-        building = BuildingForm(request.POST,instance=building)
-
+    def post(self, request, buildingID=None):
+        building = Building.objects.get(pk=buildingID)
         building.delete()
-
-        return redirect(reverse("building_view"))
+        return redirect(reverse("building_list"))
 
 class BuildingAdd(View):
     def get(self, request):
         form = BuildingForm()
-        return render(request, 'building_add.html', {'form': form})
+        return render(request, 'buildings/building_create.html', {'form': form})
 
     def post(self, request):
         form = BuildingForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('building_view')
-        return render(request, 'building_add.html', {'form': form})
-    
-
-
-# Create your views here.
+            return redirect(reverse('building_list'))
+        return render(request, 'buildings/building_create.html', {'form': form})
