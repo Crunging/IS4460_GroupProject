@@ -1,25 +1,25 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import AccessPermissions
-from .forms import AccessPermissionsForm
+from .forms import AccessPermissionForm
 from django.urls import reverse_lazy
 
 # Create your views here.
 # List view for all access records
 class AccessPermissionListView(ListView):
-    model = AccessPermission
+    model = Access_Permission
     context_object_name = 'access_permissions'
     template_name = 'access_permissions/accesspermissions_list.html'
 
 # Detail view for a specific access record
 class AccessPermissionDetailView(DetailView):
-    model = AccessPermission
+    model = Access_Permission
     context_object_name = 'access_permission'
     template_name = 'access_permission/accesspermission_detail.html'
 
 # Create view for a new access record
 class AccessPwermissionCreateView(CreateView):
-    model = AccessPermission
+    model = Access_Permission
     form_class = AccessPermissionForm
     template_name = 'access_permission/accesspermission_form.html'
 
@@ -28,7 +28,7 @@ class AccessPwermissionCreateView(CreateView):
 
 # Update view for an existing access record
 class AccessPermissionUpdateView(UpdateView):
-    model = AccessPermission
+    model = Access_Permission
     form_class = AccessPermissionForm
     template_name = 'access_permissions/accesspermission_form.html'
 
@@ -37,7 +37,7 @@ class AccessPermissionUpdateView(UpdateView):
 
 # Delete view for an access record
 class AccessPermissionDeleteView(DeleteView):
-    model = AccessPermission
+    model = Access_Permission
     context_object_name = 'access_permission'
     template_name = 'access_permissions/accesspermission_confirm_delete.html'
     success_url = reverse_lazy('access_permission_list')
