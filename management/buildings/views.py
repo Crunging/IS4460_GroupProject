@@ -7,6 +7,11 @@ class BuildingList(View):
     def get(self, request):
         buildings = Building.objects.all()
         return render(request=request, template_name='buildings/building_list.html', context={'buildings': buildings})
+    
+class BuildingDetail(View):
+    def get(self, request, BuildingID):
+        building = Building.objects.get(BuildingId=BuildingID)
+        return render(request=request, template_name='buildings/building_details.html', context={'building': building})
 
 class BuildingUpdate(View):
     def get(self, request, buildingID=None):
