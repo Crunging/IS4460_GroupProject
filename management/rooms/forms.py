@@ -1,4 +1,6 @@
-class BuildingForm(forms.ModelForm):
+from django import forms
+from rooms.models import Rooms
+class RoomsForm(forms.ModelForm):
     class Meta:
-        model = Movie
+        model = movie 
         fields = '__all__'
