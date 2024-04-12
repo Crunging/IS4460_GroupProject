@@ -2,57 +2,61 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Room  # Correct model import
 from django.views import View
-from .forms import RoomsForm
+from .forms import RoomForm
 
-class RoomsView(View):
+class RoomList(View):
     def get(self, request):
         rooms = Room.objects.all()
-        return render(request, 'rooms_view.html', {'rooms': rooms})  # Corrected context dictionary key
+        return render(request, 'rooms/rooms.view.html', {'rooms': rooms})  # Corrected context dictionary key
 
-class RoomsUpdate(View):
+class RoomDetail(View):
+    def get(self, request, room_id):  # Change 'RoomID' to 'room_id'
+        room = Room.objects.get(RoomID=room_id)
+        return render(request, 'rooms/rooms_detail.html', {'room': room})
+class RoomUpdate(View):
     def get(self, request, RoomID=None):
         if RoomID:
             room = Room.objects.get(pk=RoomID)
         else:
             room = Room()
-        form = RoomsForm(instance=room)
-        return render(request, 'rooms_update.html', {'room': room, 'form': form})
+        form = RoomForm(instance=room)
+        return render(request, 'rooms/rooms_update.html', {'room': room, 'form': form})
 
     def post(self, request, RoomID=None):
         if RoomID:
             room = Room.objects.get(pk=RoomID)
         else:
             room = Room()
-        form = RoomsForm(request.POST, instance=room)
+        form = RoomForm(request.POST, instance=room)
         if form.is_valid():
             form.save()
-            return redirect(reverse("rooms_update"))
-        return render(request, 'rooms_update.html', {'room': room, 'form': form})
+            return redirect(reverse("rooms.view"))
+        return render(request, 'rooms/rooms_update.html', {'room': room, 'form': form})
 
-class RoomsDelete(View):
+class RoomDelete(View):
     def get(self, request, RoomID=None):
         if RoomID:
             room = Room.objects.get(pk=RoomID)
         else:
             room = Room()
-        form = RoomsForm(instance=room)
+        form = RoomForm(instance=room)
         for field in form.fields:
             form.fields[field].widget.attrs['disabled'] = True
-        return render(request, 'rooms_delete.html', {'room': room, 'form': form})
+        return render(request, 'rooms/rooms_delete.html', {'room': room, 'form': form})
 
     def post(self, request, RoomID=None):
         room = Room.objects.get(pk=RoomID)
         room.delete()
-        return redirect(reverse("rooms_view"))
+        return redirect(reverse("rooms.view"))
 
-class RoomsAdd(View):
+class RoomCreate(View):
     def get(self, request):
-        form = RoomsForm()
-        return render(request, 'rooms_add.html', {'form': form})
+        form = RoomForm()
+        return render(request, 'rooms/rooms_add.html', {'form': form})
 
     def post(self, request):
-        form = RoomsForm(request.POST)
+        form = RoomForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('rooms_view')
-        return render(request, 'rooms_add.html', {'form': form})
+            return redirect('rooms.view')
+        return render(request, 'rooms/rooms_add.html', {'form': form})

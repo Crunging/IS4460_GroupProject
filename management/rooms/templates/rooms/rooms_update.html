@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Room</title>
+    <title>{% if form.instance.RoomID %}Update Room{% else %}Create Room{% endif %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Update Room</h1>
-    <form method="post">
+    <h1>{% if form.instance.RoomID %}Update Room{% else %}Create Room{% endif %}</h1>
+    <form method="post" class="col-md-6">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Update</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <a href="{% url 'rooms.view' %}" class="btn btn-secondary mt-3">Back to Room List</a>
 </body>
 </html>
-

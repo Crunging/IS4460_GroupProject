@@ -22,4 +22,5 @@ urlpatterns = [
     path('persons/', include('persons.urls')),
     path('buildings/', include('buildings.urls')),
     path('accesspermissions/', include('access_permissions.urls')),
+    path('rooms/', include('rooms.urls')),
 ]

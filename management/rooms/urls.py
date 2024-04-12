@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import RoomsView, RoomsUpdate, RoomsDelete, RoomsAdd
+from .views import RoomList, RoomDetail, RoomUpdate, RoomDelete, RoomCreate
 
 urlpatterns = [
-    path('', RoomsView.as_view(), name='rooms_view'),
-    path('<int:room_id>/', RoomsUpdate.as_view(), name='room_update'),  # Changed name to 'room_update'
-    path('<int:room_id>/update/', RoomsUpdate.as_view(), name='room_update'),  # Changed name to 'room_update'
-    path('<int:room_id>/delete/', RoomsDelete.as_view(), name='room_delete'),  # Changed name to 'room_delete'
-    path('add/', RoomsAdd.as_view(), name='room_add'),  # Changed URL pattern to remove 'room_id'
+    path('', RoomList.as_view(), name='rooms.view'),
+    path('<int:room_id>/', RoomDetail.as_view(), name='rooms_detail'),  # Changed name to 'room_update'
+    path('<int:RoomID>/update/', RoomUpdate.as_view(), name='rooms_update'),  # Changed name to 'room_update'
+    path('<int:RoomID>/delete/', RoomDelete.as_view(), name='rooms_delete'),  # Changed name to 'room_delete'
+    path('add/', RoomCreate.as_view(), name='rooms_add'),  # Changed URL pattern to remove 'room_id'
 ]
 

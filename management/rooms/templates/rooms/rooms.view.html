@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Rooms</title>
+    <title>Room List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Rooms</h1>
-    <ul>
-        {% for room in rooms %}
-            <li>{{ room }}</li>
-        {% endfor %}
+    <h1>Room List</h1>
+    <ul class="list-group col-md-6">
+    {% for room in rooms %}
+        <li class="list-group-item"><a href="{% url 'rooms_detail' room.RoomID %}">{{ room.Room_Number }}</a></li>
+    {% endfor %}
     </ul>
+    <a href="{% url 'rooms_add' %}" class="btn btn-primary mt-3">Create New Room</a>
 </body>
 </html>
