@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from .models import Access_Records
-from .forms import AccessRecordsForm
+from .forms import AccessRecordForm
 
 class AccessRecordsList(View):
     def get(self, request):
@@ -20,7 +20,7 @@ class AccessRecordsUpdate(View):
             access_record = Access_Records.objects.get(pk=RecordID)
         else:
             access_record = Access_Records()
-        form = AccessRecordsForm(instance=access_record)
+        form = AccessRecordForm(instance=access_record)
         return render(request=request, template_name='access_records/accessrecords_update.html', context={'access_records': Access_Records, 'form': form})
     
     def post(self, request, RecordID=None):
@@ -28,7 +28,7 @@ class AccessRecordsUpdate(View):
             access_record = Access_Records.objects.get(pk=RecordID)
         else:
             access_record = Access_Records()
-        form = AccessRecordsForm(request.POST, instance=access_record)
+        form = AccessRecordForm(request.POST, instance=access_record)
         if form.is_valid():
             form.save()
             return redirect(reverse("accessrecord_list"))
@@ -40,7 +40,7 @@ class AccessRecordsDelete(View):
             access_record = Access_Records.objects.get(pk=RecordID)
         else:
             access_record = Access_Records()
-        form = AccessRecordsForm(instance=access_record)
+        form = AccessRecordForm(instance=access_record)
         for field in form.fields:
             form.fields[field].widget.attrs['disabled'] = True
         return render(request=request, template_name='access_records/accessrecord_delete.html', context={'access_record': Access_Records, 'form': form})
@@ -52,11 +52,11 @@ class AccessRecordsDelete(View):
 
 class AccessRecordsAdd(View):
     def get(self, request):
-        form = AccessRecordsForm()
+        form = AccessRecordForm()
         return render(request, 'access_records/accessrecord_create.html', {'form': form})
 
     def post(self, request):
-        form = AccessRecordsForm(request.POST)
+        form = AccessRecordForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect(reverse('accessrecord_list'))
