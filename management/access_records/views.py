@@ -4,40 +4,81 @@ from .models import AccessRecord
 from .forms import AccessRecordForm
 from django.urls import reverse_lazy
 
-# Create your views here.
-# List view for all access records
-class AccessRecordListView(ListView):
-    model = AccessRecord
-    context_object_name = 'access_records'
-    template_name = 'access_records/accessrecord_list.html'
 
-# Detail view for a specific access record
-class AccessRecordDetailView(DetailView):
-    model = AccessRecord
-    context_object_name = 'access_record'
-    template_name = 'access_records/accessrecord_detail.html'
 
-# Create view for a new access record
-class AccessRecordCreateView(CreateView):
-    model = AccessRecord
-    form_class = AccessRecordForm
-    template_name = 'access_records/accessrecord_form.html'
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views import View
+from .models import Building
+from .forms import BuildingForm
 
-    def get_success_url(self):
-        return reverse_lazy('access_record_detail', kwargs={'pk': self.object.pk})
+class AccessPermissionsList(View):
+    def get(self, request):
+        access_permissions = AccessPermission.objects.all()
+        return render(request=request, template_name='access_permissions/accesspermissions_list.html', context={'access_permissions': access_permissions})
+    
+class AccessPermisions(View):
+    def get(self, request, AccessID):
+        access_permission = AccessPermission.objects.get(AccessID=AccessID)
+        return render(request=request, template_name='access_permissions/accesspermissions_detail.html', context={'access_permission': access_permission)
 
-# Update view for an existing access record
-class AccessRecordUpdateView(UpdateView):
-    model = AccessRecord
-    form_class = AccessRecordForm
-    template_name = 'access_records/accessrecord_form.html'
+class AccessPermissionsUpdate(View):
+    def get(self, request, AccessID=None):
+        if AccessID:
+            access_permission = AccessPermision.objects.get(pk=AccessID)
+        else:
+            access_permission = Acces_Permission()
+        form = AccessPermissionForm(instance=access_permission)
+        return render(request=request, template_name='access_permisions/accesspermisions_update.html', context={'access_permissions': access_permissions, 'form': form})
+    
+    def post(self, request, AccessID=None):
+        if AccessID:
+            access_permission = Access_Permision.objects.get(pk=AccessID)
+        else:
+            access_permission = Acces_Permission()
+        form = Acces_Form(request.POST, instance=access_permission)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("accesspermission_list"))
+        return render(request=request, template_name='access_permissions/accesspermission_update.html', context={'access_permission': access_permission, 'form': form})
 
-    def get_success_url(self):
-        return reverse_lazy('access_record_detail', kwargs={'pk': self.object.pk})
+class AccessPermissionDelete(View):
+    def get(self, request, AccessID=None):
+        if AccessID:
+            access_permission = Acces_Permission.objects.get(pk=AccessID)
+        else:
+            access_permission = Access_Permission()
+        form = AccessPermisionForm(instance=access_permission)
+        for field in form.fields:
+            form.fields[field].widget.attrs['disabled'] = True
+        return render(request=request, template_name='access_permissions/accesspermission_delete.html', context={'access_permission': access_permission, 'form': form})
+      
+    def post(self, request, AccessID=None):
+        access_permission = Access_Permission.objects.get(pk=AccessID)
+        access_permission.delete()
+        return redirect(reverse("accesspermission_list"))
 
-# Delete view for an access record
-class AccessRecordDeleteView(DeleteView):
-    model = AccessRecord
-    context_object_name = 'access_record'
-    template_name = 'access_records/accessrecord_confirm_delete.html'
-    success_url = reverse_lazy('access_record_list')
+class AccessPermissionAdd(View):
+    def get(self, request):
+        form = AccessPermissionForm()
+        return render(request, 'access_permission/accesspermission_create.html', {'form': form})
+
+    def post(self, request):
+        form = AccessPermissionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('accesspermission_list'))
+        return render(request, 'access_permissions/accesspermission_create.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
+
+
