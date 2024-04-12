@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from buildings.models import rooms
+from rooms.models import Rooms
 from django.views import View
 from .forms import RoomsForm
 from rest_framework import generics
@@ -11,7 +11,7 @@ class RoomsView(View):
 
         rooms = Rooms.objects.all()
 
-        return render(request = request,template_name = 'rooms_view.html',context = {'rooms:rooms})
+        return render(request = request,template_name = 'rooms_view.html',context = {'rooms:rooms'})
 
                                                                                     
 class RoomsUpdate(View):
@@ -21,20 +21,20 @@ class RoomsUpdate(View):
         if RoomID:
             room = Rooms.objects.get(pk=RoomID)
         else:
-            room = Room()
+            room = Rooms()
 
         form = RoomForm(instance=room)
 
 
        
         return render(request = request,
-                      template_name = 'room_update.html',
+                      template_name = 'rooms_update.html',
                       context = {'room':room,'form':form})
     
     def post(self,request,RoomID=None):
 
         if RoomID:
-            room = Room.objects.get(pk=RoomID)
+            room = Rooms.objects.get(pk=RoomID)
         else:
             room = room()
 
@@ -52,7 +52,7 @@ class RoomDelete(View):
     def get(self,request,RoomID=None):
 
         if RoomID:
-            room = Room.objects.get(pk=RoomID)
+            room = Rooms.objects.get(pk=RoomID)
         else:
             room = room()
 
@@ -62,30 +62,30 @@ class RoomDelete(View):
         for field in form.fields:
             form.fields[field].widget.attrs['disabled'] = True
 
-        return render(request = request,template_name = 'room_delete.html',context = {'room':room,'form':form})
+        return render(request = request,template_name = 'rooms_delete.html',context = {'room':room,'form':form})
       
     
     def post(self,request,RoomID=None):
 
-        room = Room.objects.get(pk=RoomID)
+        room = Rooms.objects.get(pk=RoomID)
 
         room = RoomForm(request.POST,instance=room)
 
         room.delete()
 
-        return redirect(reverse("room_view"))
+        return redirect(reverse("rooms_view"))
 
 class RoomAdd(View):
     def get(self, request):
         form = RoomForm()
-        return render(request, 'room_add.html', {'form': form})
+        return render(request, 'rooms_add.html', {'form': form})
 
     def post(self, request):
         form = RoomForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('room_view')
-        return render(request, 'room_add.html', {'form': form})
+            return redirect('rooms_view')
+        return render(request, 'rooms_add.html', {'form': form})
     
 
 # Create your views here.
