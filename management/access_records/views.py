@@ -1,49 +1,49 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-from .models import Building
-from .forms import BuildingForm
+from .models import Access_Records
+from .forms import AccessRecordsForm
 
 class AccessRecordsList(View):
     def get(self, request):
         access_records = AccessRecord.objects.all()
-        return render(request=request, template_name='Access_Records/ActionRecords_list.html', context={'Access_Records': Access_Records})
+        return render(request=request, template_name='access_records/accesrecords_list.html', context={'access_Records': Access_Records})
     
-class accessrecords(View):
+class AccessRecordsDetail(View):
     def get(self, request, RecordID):
         Access_Record = accessrecord.objects.get(RecordID=RecordID)
-        return render(request=request, template_name='Access_Records/ActionRecords_detail.html', context={'Access_Record': Access_Record)
+        return render(request=request, template_name='access_records/accessRecords_detail.html', context={'access_record': Access_Record)
 
-class ActionRecordsUpdate(View):
+class AccessRecordsUpdate(View):
     def get(self, request, RecordID=None):
         if RecordID:
-            Access_Record = accessrecord.objects.get(pk=RecordID)
+            access_record = AccessRecord.objects.get(pk=RecordID)
         else:
-            Access_Record = Access_Record()
-        form = accessrecordForm(instance=Access_Record)
-        return render(request=request, template_name='Access_Records/accessrecords_update.html', context={'Access_Records': Access_Records, 'form': form})
+            access_record = Access_Record()
+        form = AccessRecordForm(instance=access_record)
+        return render(request=request, template_name='access_records/accessrecords_update.html', context={'access_records': Access_Records, 'form': form})
     
     def post(self, request, RecordID=None):
         if RecordID:
-            Access_Record = Access_Record.objects.get(pk=RecordID)
+            access_record = Access_Record.objects.get(pk=RecordID)
         else:
-            Access_Record = Access_Record()
-        form = Acces_Form(request.POST, instance=Access_Record)
+            access_record = Access_Record()
+        form = AccesRecord_Form(request.POST, instance=Access_Record)
         if form.is_valid():
             form.save()
             return redirect(reverse("accessrecord_list"))
-        return render(request=request, template_name='Access_Records/accessrecord_update.html', context={'Access_Record': Access_Record, 'form': form})
+        return render(request=request, template_name='access_records/accessrecord_update.html', context={'access_record': Access_Record, 'form': form})
 
-class accessrecordDelete(View):
+class AccessRecordDelete(View):
     def get(self, request, RecordID=None):
         if RecordID:
-            Access_Record = Access_Record.objects.get(pk=RecordID)
+            access_record = Rccess_Record.objects.get(pk=RecordID)
         else:
-            Access_Record = Access_Record()
-        form = accessrecordForm(instance=Access_Record)
+            access_record = Access_Record()
+        form = AccessRecordForm(instance=Access_Record)
         for field in form.fields:
             form.fields[field].widget.attrs['disabled'] = True
-        return render(request=request, template_name='Access_Records/accessrecord_delete.html', context={'Access_Record': Access_Record, 'form': form})
+        return render(request=request, template_name='access_records/accessrecord_delete.html', context={'access_record': Access_Record, 'form': form})
       
     def post(self, request, RecordID=None):
         Access_Record = Access_Record.objects.get(pk=RecordID)
@@ -60,7 +60,7 @@ class accessrecordAdd(View):
         if form.is_valid():
             form.save()
             return redirect(reverse('accessrecord_list'))
-        return render(request, 'Access_Records/accessrecord_create.html', {'form': form})
+        return render(request, 'access_records/accessrecord_create.html', {'form': form})
 
 
 
