@@ -4,63 +4,63 @@ from django.views import View
 from .models import Building
 from .forms import BuildingForm
 
-class AccessPermissionsList(View):
+class AccessRecordsList(View):
     def get(self, request):
-        access_permissions = AccessPermission.objects.all()
-        return render(request=request, template_name='access_permissions/accesspermissions_list.html', context={'access_permissions': access_permissions})
+        access_records = AccessRecord.objects.all()
+        return render(request=request, template_name='Action_Records/ActionRecords_list.html', context={'Action_Records': Action_Records})
     
-class AccessPermisions(View):
-    def get(self, request, AccessID):
-        access_permission = AccessPermission.objects.get(AccessID=AccessID)
-        return render(request=request, template_name='access_permissions/accesspermissions_detail.html', context={'access_permission': access_permission)
+class accessrecords(View):
+    def get(self, request, RecordID):
+        Action_Record = accessrecord.objects.get(RecordID=RecordID)
+        return render(request=request, template_name='Action_Records/ActionRecords_detail.html', context={'Action_Record': Action_Record)
 
-class AccessPermissionsUpdate(View):
-    def get(self, request, AccessID=None):
-        if AccessID:
-            access_permission = AccessPermision.objects.get(pk=AccessID)
+class ActionRecordsUpdate(View):
+    def get(self, request, RecordID=None):
+        if RecordID:
+            Action_Record = accessrecord.objects.get(pk=RecordID)
         else:
-            access_permission = Acces_Permission()
-        form = AccessPermissionForm(instance=access_permission)
-        return render(request=request, template_name='access_permisions/accesspermisions_update.html', context={'access_permissions': access_permissions, 'form': form})
+            Action_Record = Action_Record()
+        form = accessrecordForm(instance=Action_Record)
+        return render(request=request, template_name='Action_Records/accessrecords_update.html', context={'Action_Records': Action_Records, 'form': form})
     
-    def post(self, request, AccessID=None):
-        if AccessID:
-            access_permission = Access_Permision.objects.get(pk=AccessID)
+    def post(self, request, RecordID=None):
+        if RecordID:
+            Action_Record = Action_Record.objects.get(pk=RecordID)
         else:
-            access_permission = Acces_Permission()
-        form = Acces_Form(request.POST, instance=access_permission)
+            Action_Record = Action_Record()
+        form = Acces_Form(request.POST, instance=Action_Record)
         if form.is_valid():
             form.save()
-            return redirect(reverse("accesspermission_list"))
-        return render(request=request, template_name='access_permissions/accesspermission_update.html', context={'access_permission': access_permission, 'form': form})
+            return redirect(reverse("accessrecord_list"))
+        return render(request=request, template_name='Action_Records/accessrecord_update.html', context={'Action_Record': Action_Record, 'form': form})
 
-class AccessPermissionDelete(View):
-    def get(self, request, AccessID=None):
-        if AccessID:
-            access_permission = Acces_Permission.objects.get(pk=AccessID)
+class accessrecordDelete(View):
+    def get(self, request, RecordID=None):
+        if RecordID:
+            Action_Record = Action_Record.objects.get(pk=RecordID)
         else:
-            access_permission = Access_Permission()
-        form = AccessPermisionForm(instance=access_permission)
+            Action_Record = Action_Record()
+        form = accessrecordForm(instance=Action_Record)
         for field in form.fields:
             form.fields[field].widget.attrs['disabled'] = True
-        return render(request=request, template_name='access_permissions/accesspermission_delete.html', context={'access_permission': access_permission, 'form': form})
+        return render(request=request, template_name='Action_Records/accessrecord_delete.html', context={'Action_Record': Action_Record, 'form': form})
       
-    def post(self, request, AccessID=None):
-        access_permission = Access_Permission.objects.get(pk=AccessID)
-        access_permission.delete()
-        return redirect(reverse("accesspermission_list"))
+    def post(self, request, RecordID=None):
+        Action_Record = Action_Record.objects.get(pk=RecordID)
+        Action_Record.delete()
+        return redirect(reverse("accessrecord_list"))
 
-class AccessPermissionAdd(View):
+class accessrecordAdd(View):
     def get(self, request):
-        form = AccessPermissionForm()
-        return render(request, 'access_permission/accesspermission_create.html', {'form': form})
+        form = accessrecordForm()
+        return render(request, 'Action_Record/accessrecord_create.html', {'form': form})
 
     def post(self, request):
-        form = AccessPermissionForm(request.POST)
+        form = accessrecordForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('accesspermission_list'))
-        return render(request, 'access_permissions/accesspermission_create.html', {'form': form})
+            return redirect(reverse('accessrecord_list'))
+        return render(request, 'Action_Records/accessrecord_create.html', {'form': form})
 
 
 
