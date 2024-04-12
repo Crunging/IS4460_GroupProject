@@ -4,7 +4,7 @@ from buildings.models import Building
 from rooms.models import Room
 
 # Create your models here.
-class AccessRecord(models.Model):
+class AccessRecords(models.Model):
     RecordID = models.AutoField(primary_key=True)
     UID = models.ForeignKey(Persons, on_delete.CASCADE)
     BuildingID = models.ForeignKey(Building, on_delete=models.CASCADE)
