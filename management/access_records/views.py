@@ -28,7 +28,7 @@ class AccessRecordsUpdate(View):
             access_record = Access_Records.objects.get(pk=RecordID)
         else:
             access_record = Access_Records()
-        form = AccesRecord_Form(request.POST, instance=access_record)
+        form = AccesRecordsForm(request.POST, instance=access_record)
         if form.is_valid():
             form.save()
             return redirect(reverse("accessrecord_list"))
@@ -52,11 +52,11 @@ class AccessRecordsDelete(View):
 
 class AccessRecordsAdd(View):
     def get(self, request):
-        form = AccessRecordForm()
+        form = AccessRecordsForm()
         return render(request, 'access_records/accessrecord_create.html', {'form': form})
 
     def post(self, request):
-        form = AccessRecordForm(request.POST)
+        form = AccessRecordsForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect(reverse('accessrecord_list'))
