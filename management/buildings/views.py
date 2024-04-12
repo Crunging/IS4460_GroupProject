@@ -11,21 +11,21 @@ class BuildingList(View):
     
 class BuildingDetail(View):
     def get(self, request, BuildingID):
-        building = Building.objects.get(BuildingId=BuildingID)
-        return render(request=request, template_name='buildings/building_details.html', context={'building': building})
+        building = Building.objects.get(BuildingID=BuildingID)
+        return render(request=request, template_name='buildings/building_detail.html', context={'building': building})
 
 class BuildingUpdate(View):
-    def get(self, request, buildingID=None):
-        if buildingID:
-            building = Building.objects.get(pk=buildingID)
+    def get(self, request, BuildingID=None):
+        if BuildingID:
+            building = Building.objects.get(pk=BuildingID)
         else:
             building = Building()
         form = BuildingForm(instance=building)
         return render(request=request, template_name='buildings/building_update.html', context={'building': building, 'form': form})
     
-    def post(self, request, buildingID=None):
-        if buildingID:
-            building = Building.objects.get(pk=buildingID)
+    def post(self, request, BuildingID=None):
+        if BuildingID:
+            building = Building.objects.get(pk=BuildingID)
         else:
             building = Building()
         form = BuildingForm(request.POST, instance=building)
@@ -35,9 +35,9 @@ class BuildingUpdate(View):
         return render(request=request, template_name='buildings/building_update.html', context={'building': building, 'form': form})
 
 class BuildingDelete(View):
-    def get(self, request, buildingID=None):
-        if buildingID:
-            building = Building.objects.get(pk=buildingID)
+    def get(self, request, BuildingID=None):
+        if BuildingID:
+            building = Building.objects.get(pk=BuildingID)
         else:
             building = Building()
         form = BuildingForm(instance=building)
@@ -45,8 +45,8 @@ class BuildingDelete(View):
             form.fields[field].widget.attrs['disabled'] = True
         return render(request=request, template_name='buildings/building_delete.html', context={'building': building, 'form': form})
       
-    def post(self, request, buildingID=None):
-        building = Building.objects.get(pk=buildingID)
+    def post(self, request, BuildingID=None):
+        building = Building.objects.get(pk=BuildingID)
         building.delete()
         return redirect(reverse("building_list"))
 
