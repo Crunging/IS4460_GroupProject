@@ -8,5 +8,5 @@ class Access_Permission(models.Model):
       BuildingID = models.ForeignKey(Building, on_delete=models.CASCADE)
       RoomID = models.ForeignKey(Room, on_delete=models.CASCADE)
       UID = models.ForeignKey(Person, on_delete=models.CASCADE)
-      Building_Hours = models.TimeField()
-      Room_Hours = models.TimeField()
+      Building_Hours = models.CharField(max_length=155)  
+      Room_Hours = models.CharField(max_length=155)
