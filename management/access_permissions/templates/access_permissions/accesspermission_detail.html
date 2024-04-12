@@ -1,1 +1,24 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Permissions Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Access Permissions Detail</h1>
+    <p><strong>AccessID:</strong> {{ access_permissions.AccessID }}</p>
+    <p><strong>BuildingID:</strong> {{ access_permissions.BuildingID }}</p>
+    <p><strong>RoomID:</strong> {{ access_permissions.RoomID }}</p>
+    <p><strong>UID:</strong> {{ access_permissions.UID }}</p>
+    <p><strong>Building Hours:</strong> {{ access_permissions.Building_Hours }}</p>
+    <p><strong>Room Hours:</strong> {{ access_permissions.Room_Hours }}</p>
+    <!-- Add other fields as needed -->
+    <a href="{% url 'accesspermissions_update' accesspermissons.AccessID %}" class="btn btn-primary">Update</a>
+    <a href="{% url 'accesspermissions_delete' accesspermissions.AccessID %}" class="btn btn-danger">Delete</a>
+</body>
+</html>
