@@ -28,7 +28,7 @@ class AccessRecordsUpdate(View):
             access_record = Access_Records.objects.get(pk=RecordID)
         else:
             access_record = Access_Records()
-        form = AccesRecordsForm(request.POST, instance=access_record)
+        form = AccessRecordsForm(request.POST, instance=access_record)
         if form.is_valid():
             form.save()
             return redirect(reverse("accessrecord_list"))
