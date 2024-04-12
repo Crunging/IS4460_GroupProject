@@ -6,7 +6,7 @@ from .forms import AccessRecordsForm
 
 class AccessRecordsList(View):
     def get(self, request):
-        access_records = Access_Records.objects.all()
+        Access_Records = Access_Records.objects.all()
         return render(request=request, template_name='access_records/accessrecords_list.html', context={'access_Records': Access_Records})
     
 class AccessRecordsDetail(View):
