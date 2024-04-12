@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import AccessPermissions
+from .models import Access_Permission
 from .forms import AccessPermissionForm
 from django.urls import reverse_lazy
 
