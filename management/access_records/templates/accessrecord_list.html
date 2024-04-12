@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Records List</title>
+</head>
+<body>
+    <h2>Access Records</h2>
+    <ul>
+        {% for record in access_records %}
+            <li>
+                <a href="{% url 'access_record_detail' record.pk %}">{{ record }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
