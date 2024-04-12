@@ -1,1 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Building Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Building Detail</h1>
+    <p><strong>Building ID:</strong> {{ building.BuildingID }} </p>
+    <p><strong>Building Name:</strong> {{ building.Building_name }}</p>
+    <p><strong>Year Built:</strong> {{ building.Year_built }}</p>
+  
+    <!-- Add other fields as needed -->
+    <a href="{% url 'building_update' buildings.BuildingID %}" class="btn btn-primary">Update</a>
+    <a href="{% url 'building_delete' buildings.BuildingID %}" class="btn btn-danger">Delete</a>
+</body>
+</html>
 
