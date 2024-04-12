@@ -9,4 +9,4 @@ class Access_Records(models.Model):
     UID = models.ForeignKey(Person, on_delete=models.CASCADE)
     BuildingID = models.ForeignKey(Building, on_delete=models.CASCADE)
     RoomID = models.ForeignKey(Room, on_delete=models.CASCADE)
-    DateTime = models.DateTimeField()
+    DateTime = models.CharField(max_length=155)
