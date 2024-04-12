@@ -12,7 +12,7 @@ class AccessRecordsList(View):
 class AccessRecordsDetail(View):
     def get(self, request, RecordID):
         Access_Records = Access_Records.objects.get(RecordID=RecordID)
-        return render(request=request, template_name='access_records/accessRecords_detail.html', context={'access_record': Access_Records})
+        return render(request=request, template_name='access_records/accessrecords_detail.html', context={'access_record': Access_Records})
 
 class AccessRecordsUpdate(View):
     def get(self, request, RecordID=None):
