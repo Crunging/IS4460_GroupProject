@@ -1,7 +1,7 @@
 from django import forms
-from .models import AccessRecord
+from .models import Access_Records
 
 class AccessRecordForm(forms.ModelForm):
     class Meta:
-        model = AccessRecord
+        model = Access_Records
         fields = '__all__'

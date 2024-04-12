@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Record Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Access Record Detail</h1>
+    <p><strong>Record ID:</strong> {{ accessrecord.RecordID }}</p>
+    <p><strong>User ID:</strong> {{ accessrecord.UID }}</p>
+    <p><strong>Building ID:</strong> {{ accessrecord.BuildingID }}</p>
+    <p><strong>Room ID:</strong> {{ accessrecord.RoomID }}</p>
+    <p><strong>Date Time:</strong> {{ accessrecord.DateTime }}</p>
+    <!-- Add other fields as needed -->
+    <a href="{% url 'accessrecord_update' accessrecord.RecordID %}" class="btn btn-primary">Update</a>
+    <a href="{% url 'accessrecord_delete' accessrecord.RecordID %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'accessrecord_list' %}" class="btn btn-secondary mt-3">Back to Access Record List</a>
+</body>
+</html>
