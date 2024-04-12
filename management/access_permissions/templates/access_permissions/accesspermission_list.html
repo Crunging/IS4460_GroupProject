@@ -2,15 +2,20 @@
 <html>
 <head>
     <title>Access Permissions List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Access Permissions</h2>
-    <ul>
-        {% for permission in access_permissions %}
-            <li>
-                <a href="{% url 'access_permission_detail' record.pk %}">{{ record }}</a>
-            </li>
-        {% endfor %}
+    <h1>Access Permissions List</h1>
+    <ul class="list-group col-md-6">
+    {% for accesspermission in accesspermissions %}
+        <li class="list-group-item"><a href="{% url 'accesspermission_detail' accesspermission.id %}">{{ accesspermission.name }}</a></li>
+    {% endfor %}
     </ul>
+    <a href="{% url 'accesspermission_create' %}" class="btn btn-primary mt-3">Create New Access Permission</a>
 </body>
 </html>
