@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import access_permission_report, AccessPermissionList, AccessPermissionDetail, AccessPermissionCreate, AccessPermissionUpdate, AccessPermissionDelete
+from .views import access_reportroles, AccessPermissionList, AccessPermissionDetail, AccessPermissionCreate, AccessPermissionUpdate, AccessPermissionDelete
 
 
 urlpatterns = [
@@ -8,5 +8,5 @@ urlpatterns = [
     path('create/', AccessPermissionCreate.as_view(), name='accesspermission_create'),
     path('<int:AccessID>/update/', AccessPermissionUpdate.as_view(), name='accesspermission_update'),
     path('<int:AccessID>/delete/', AccessPermissionDelete.as_view(), name='accesspermission_delete'),
-    path('apr', access_permission_report, name='access_permission_report'),
+    path('apr', access_reportroles, name='access_permission_report'),
 ]
