@@ -52,10 +52,15 @@ class AccessRecordCreate(View):
         return render(request, 'access_records/accessrecord_create.html', {'form': form})
 
 
-
-
-
-
+def access_records(request):
+    if request.method == 'GET' and 'start_time' in request.GET and 'end_time' in request.GET:
+        start_time = request.GET.get('start_time')
+        end_time = request.GET.get('end_time')
+        access_records = Access_Records.objects.filter(DateTime__gte=start_time, DateTime__lte=end_time)
+    else:
+        access_records = Access_Records.objects.all()
+    
+    return render(request, 'access_records/access_records.html', {'access_records': access_records})
 
 
 

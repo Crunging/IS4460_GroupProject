@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Records</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Access Records</h1>
+    <form method="get">
+        <div class="form-group">
+            <label for="start_time">Start Time:</label>
+            <input type="text" class="form-control" id="start_time" name="start_time" placeholder="YYYY-MM-DD HH:MM:SS">
+        </div>
+        <div class="form-group">
+            <label for="end_time">End Time:</label>
+            <input type="text" class="form-control" id="end_time" name="end_time" placeholder="YYYY-MM-DD HH:MM:SS">
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+    <ul class="list-group mt-3">
+        {% for record in access_records %}
+            <li class="list-group-item">{{ record.DateTime }} - {{ record.UID.first_name }} {{ record.UID.last_name }} accessed {{ record.BuildingID.Building_Name }} - Room {{ record.RoomID.Room_Number }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'accessrecord_list' %}" class="btn btn-secondary mt-3">Back to Access Record List</a>
+</body>
+</html>

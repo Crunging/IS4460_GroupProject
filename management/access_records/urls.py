@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AccessRecordList, AccessRecordDetail, AccessRecordCreate, AccessRecordUpdate, AccessRecordDelete
+from .views import access_records, AccessRecordList, AccessRecordDetail, AccessRecordCreate, AccessRecordUpdate, AccessRecordDelete
    
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('create/', AccessRecordCreate.as_view(), name='accessrecord_create'),
     path('<int:RecordID>/update/', AccessRecordUpdate.as_view(), name='accessrecord_update'),
     path('<int:RecordID>/delete/', AccessRecordDelete.as_view(), name='accessrecord_delete'),
+    path('a', access_records, name='access_records'),
 ]
