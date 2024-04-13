@@ -49,3 +49,8 @@ class AccessPermissionDelete(View):
         accesspermission = Access_Permission.objects.get(AccessID=AccessID)
         accesspermission.delete()
         return redirect(reverse('accesspermission_list'))
+
+
+def access_permission_report(request):
+    accesspermissions = Access_Permission.objects.all()
+    return render(request, 'access_permissions/access_permission_report.html', {'accesspermissions': accesspermissions})

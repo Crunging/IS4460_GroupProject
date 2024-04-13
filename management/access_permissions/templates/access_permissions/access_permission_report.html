@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Permission Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Access Permission Report</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Access ID</th>
+                <th>Building</th>
+                <th>Room ID</th>
+                <th>User</th>
+                <th>Building Hours</th>
+                <th>Room Hours</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for permission in access_permissions %}
+            <tr>
+                <td>{{ permission.AccessID }}</td>
+                <td>{{ permission.BuildingID.Building_Name }}</td>
+                <td>{{ permission.RoomID }}</td>
+                <td>{{ permission.UID.first_name }}</td>
+                <td>{{ permission.Building_Hours }}</td>
+                <td>{{ permission.Room_Hours }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
