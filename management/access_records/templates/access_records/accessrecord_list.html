@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <a href="{% url 'home' %}">Go back home</a>
     <title>Access Record List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -18,7 +19,6 @@
     </ul>
     <a href="{% url 'accessrecord_create' %}" class="btn btn-primary mt-3">Create New Access Record</a><br>
     <a href="{% url 'access_records' %}" class="btn btn-primary mt-3">Generate Access Record Reports</a><br><br>
-    <br>
-    <br><a href="{% url 'home' %}" class="btn btn-primary">Go back to Home</a>
+    <a href="{% url 'accesspermission_list' %}" class="btn btn-primary">Go to Access Permissions List</a>
 </body>
 </html>
