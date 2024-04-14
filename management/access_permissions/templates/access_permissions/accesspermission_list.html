@@ -16,6 +16,7 @@
         <li class="list-group-item"><a href="{% url 'accesspermission_detail' accesspermission.AccessID %}">Access Permission {{ accesspermission.AccessID }}</a></li>
     {% endfor %}
     </ul>
-    <a href="{% url 'accesspermission_create' %}" class="btn btn-primary mt-3">Create New Access Permission</a>
+    <a href="{% url 'accesspermission_create' %}" class="btn btn-primary mt-3">Create New Access Permission</a><br>
+    <a href="{% url 'access_permission_report' %}" class="btn btn-primary mt-3">Generate Roles and Authorization Permissions</a>
 </body>
 </html>

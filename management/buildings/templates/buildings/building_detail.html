@@ -14,6 +14,7 @@
     
     <p><strong>Building Name:</strong> {{ building.Building_Name }}</p>
     <p><strong>Year Built:</strong> {{ building.Year_Built }}</p>
+    <p><strong>Number of People:</strong> {{ building.Number_people }}</p>
   
     <!-- Add other fields as needed -->
     <a href="{% url 'building_update' building.BuildingID %}" class="btn btn-primary">Update</a>

@@ -16,6 +16,7 @@
         <li class="list-group-item"><a href="{% url 'accessrecord_detail' accessrecord.RecordID %}">Access Record {{ accessrecord.RecordID }}</a></li>
     {% endfor %}
     </ul>
-    <a href="{% url 'accessrecord_create' %}" class="btn btn-primary mt-3">Create New Access Record</a>
+    <a href="{% url 'accessrecord_create' %}" class="btn btn-primary mt-3">Create New Access Record</a><br>
+    <a href="{% url 'access_records' %}" class="btn btn-primary mt-3">Generate Access Record Reports</a>
 </body>
 </html>

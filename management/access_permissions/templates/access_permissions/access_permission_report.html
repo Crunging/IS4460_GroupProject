@@ -17,5 +17,6 @@
             <li>{{ permission.UID.first_name }} {{ permission.UID.last_name }} - {{ permission.BuildingID.Building_Name }} - {{ permission.RoomID.Room_Number }}</li>
         {% endfor %}
     </ul>
+    <a href="{% url 'accesspermission_list' %}" class="btn btn-primary mt-3">Back to Access Permissions List</a>
 </body>
 </html>

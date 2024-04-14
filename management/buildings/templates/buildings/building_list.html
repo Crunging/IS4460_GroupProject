@@ -13,7 +13,7 @@
     <h1>Buildings List</h1>
     <ul class="list-group col-md-6">
     {% for building in buildings %}
-        <li class="list-group-item"><a href="{% url 'building_detail' building.BuildingID %}">{{ building.Building_Name }} {{ building.Year_Built }}</a></li>
+        <li class="list-group-item"><a href="{% url 'building_detail' building.BuildingID %}">{{ building.Building_Name }}</a></li>
     {% endfor %}
     </ul>
     <a href="{% url 'building_create' %}" class="btn btn-primary mt-3">Create New Building</a>
