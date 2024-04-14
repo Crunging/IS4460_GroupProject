@@ -3,6 +3,10 @@ from django.urls import reverse
 from django.views import View
 from .models import Person
 from .forms import PersonForm
+from django.views.generic import TemplateView
+
+class HomePageView(TemplateView):
+    template_name = 'persons/home.html'
 
 class PersonList(View):
     def get(self, request):

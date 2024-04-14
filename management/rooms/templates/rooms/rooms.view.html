@@ -16,6 +16,7 @@
         <li class="list-group-item"><a href="{% url 'rooms_detail' room.RoomID %}">{{ room.Room_Number }}</a></li>
     {% endfor %}
     </ul>
-    <a href="{% url 'rooms_add' %}" class="btn btn-primary mt-3">Create New Room</a>
+    <a href="{% url 'rooms_add' %}" class="btn btn-primary mt-3">Create New Room</a><br>
+    <br><a href="{% url 'home' %}" class="btn btn-primary">Go back to Home</a>
 </body>
 </html>
